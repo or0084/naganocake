@@ -2,15 +2,77 @@
 <html>
   <head>
     <title>Naganocake</title>
+    <script src="https://kit.fontawesome.com/d158fb4ed2.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>ながのCAKE</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                        aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto p-3" >
+             <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>商品一覧<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>会員一覧<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "/users", class: 'nav-link text-light' do %>注文履歴一覧<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "/books", class: 'nav-link text-light' do %>ジャンル一覧<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>ログアウト<% end %>
+              </li>
+             <% else %>
+              <li class="nav-item">
+                <%= link_to "/", class: 'nav-link text-light' do %>About<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "/", class: 'nav-link text-light' do %>商品一覧<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "/", class: 'nav-link text-light' do %>新規登録<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "/", class: 'nav-link text-light' do %>ログイン<% end %>
+              </li>
+             <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
     <%= yield %>
+    </main>
+    <footer>
+      <div class="container mt-5 text-center">
+        <div class="row">
+          <div class="mx-auto fixed-bottom p-3 border-top">
+            <p>ながのCAKE</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
