@@ -7,7 +7,7 @@
     <h3 class="bg-light col-lg-3">商品新規登録</h3>
   </div>
   <br>
-  <%= form_with model: @item, url: new_admin_item_path, method: :get do |f| %>
+  <%= form_with model: @item, url: admin_items_path do |f| %>
   <div class="form-group row">
     <label for="image" class="col-lg-2">商品画像</label>
     <%= f.file_field :image, accept: "image/*" %>
