@@ -25,6 +25,10 @@
   margin-left: 13px;
 }
 
-.footer{
-  display: block;
+.container .footer{
+  width: 100%;
+}
+
+.pagination {
+  justify-content: center;
 }
