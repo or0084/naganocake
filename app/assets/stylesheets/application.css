@@ -24,3 +24,11 @@
   width: 35%;
   margin-left: 13px;
 }
+
+.container .footer{
+  width: 100%;
+}
+
+.pagination {
+  justify-content: center;
+}
