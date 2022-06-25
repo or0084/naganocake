@@ -26,7 +26,8 @@
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto p-3" >
-             <%  if admin_signed_in? %>
+
+             <%  if customer_signed_in? %>
               <li class="nav-item">
                 <%= link_to admin_items_path, class: 'nav-link text-light' do %>商品一覧<% end %>
               </li>
@@ -47,16 +48,15 @@
                 <%= link_to "/", class: 'nav-link text-light' do %>About<% end %>
               </li>
               <li class="nav-item">
-                <%= link_to admin_items_path, class: 'nav-link text-light' do %>商品一覧<% end %>
+                <%= link_to "/", class: 'nav-link text-light' do %>商品一覧<% end %>
               </li>
               <li class="nav-item">
                 <%= link_to "/", class: 'nav-link text-light' do %>新規登録<% end %>
               </li>
               <li class="nav-item">
-                <%= link_to admin_session_path, class: 'nav-link text-light' do %>ログイン<% end %>
+                <%= link_to "/", class: 'nav-link text-light' do %>ログイン<% end %>
               </li>
              <% end %>
-
 
             </ul>
           </div>
