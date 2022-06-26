@@ -10,14 +10,22 @@ Rails.application.routes.draw do
   }
 
 
-
   namespace :public do
     get 'homes/top'
     get 'homes/about'
   end
+
+  namespace :public do
+    resources :customers, only:[:show, :edit, :unsubscribe], controllers: {
+       customers_show: "customers/my page"
+    }
+  end
+
+
   namespace :admin do
     get 'homes/top'
   end
+
   namespace :admin do
     resources :genres, only:[:index, :create, :edit, :update]
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
