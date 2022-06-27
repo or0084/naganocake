@@ -39,7 +39,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_up_path_for(resource)
-   public_homes_top_path
+   public_customer_path(resource)
   end
 
   #def after_sign_out_path_for(resource)
