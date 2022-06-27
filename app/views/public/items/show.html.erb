@@ -1,0 +1,17 @@
+<div class="container mx-auto text-aligin-center">
+  <div class="row mt-5 mb-5">
+    <div class="col-3"></div>
+    <div class="col-3"><%= image_tag @item.get_image %></div>
+    <div class="col-6">
+      <div class="item">
+       <h3 class="item-name"><%= @item.name %></h3>
+       <p class="item-body"><%= @item.introduction %></p>
+       <h4 class="item-price">¥<%= @item.with_tax_price %>(税込)</h4>
+      </div>
+    </div>
+    
+    <div class="row">
+    個数、カートに
+    </div>
+  </div>
+</div>

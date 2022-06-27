@@ -19,8 +19,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :customers, only:[:show, :edit, :update, :unsubscribe, :withdraw], controllers: {
-       customers_show: "customers/my page"
-    }
+       customers_show: "customers/my page"}
+
+    resources :items, only:[:index, :show]
   end
 
 
