@@ -11,7 +11,9 @@
     </div>
 
     <div class="row">
-    個数、カートに入れる
+      <!--%= form_with model: @item, url: public_cart_items_path  do |f| %>-->
+      <!--%= f.hidden_field :amount, :value => "item.id" %>-->
+      <!--%= f.select :amount, *[1..10] %>-->
     </div>
   </div>
 </div>
