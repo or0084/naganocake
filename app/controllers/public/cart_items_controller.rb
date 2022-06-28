@@ -5,27 +5,21 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    if CartItem.add_item(cart_item_params[:item_id, :amount])
-      flash[:notice] = 'カート内にアイテムが追加されました'
-    else
-      flash[:notice] = 'カート内アイテムの追加に失敗しました'
-    end
+
+    @cart_item = CartItem.new(cart_item_params)
+    binding.pry
+    @cart_item.customer_id = current_customer.id
+
+    @cart_item.save
+    redirect_to public_cart_items_path
   end
 
   def update
-    if CartItem.update_item(cart_item_params[:item_id, :amount])
-      flash[:notice] = 'カート内が更新されました'
-    else
-      flash[:notice] = 'カート内の更新に失敗しました'
-    end
+
   end
 
   def destroy
-    if CartItem.delete_item(cart_item_params[:item_id])
-      flash[:notice] = 'カート内アイテムが削除されました'
-    else
-      flash[:notice] = 'カート内アイテムの削除に失敗しました'
-    end
+
   end
 
 
@@ -33,7 +27,7 @@ class Public::CartItemsController < ApplicationController
 
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
   end
 
 end
