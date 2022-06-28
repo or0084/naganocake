@@ -4,6 +4,10 @@ class CartItem < ApplicationRecord
 
 
 
+  def subtotal
+    item.with_tax_price * amount
+  end
+
   def add_item(item_id:, amount:)
     item = item.find_by(item_id: item_id) || item.build(item_id: item_id)
     item.amount += amount.to_i
