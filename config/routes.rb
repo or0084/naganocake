@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :public do
-
-  end
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -20,7 +16,7 @@ Rails.application.routes.draw do
     get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-    get 'orders/confirm'
+    post 'orders/confirm'
     get 'orders/complete'
   end
 
