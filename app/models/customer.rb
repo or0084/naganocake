@@ -11,6 +11,9 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
 
+　def address_display
+　  '〒' + postal_code + ' ' + address + ' ' + name
+　end
 
 
 

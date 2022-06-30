@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  namespace :public do
+
+  end
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -17,6 +20,8 @@ Rails.application.routes.draw do
     get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    get 'orders/confirm'
+    get 'orders/complete'
   end
 
   namespace :public do
@@ -26,6 +31,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :update, :destroy, :create]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+    resources :orders, only:[:new, :index, :show, :create]
   end
 
 
