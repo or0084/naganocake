@@ -27,7 +27,6 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @order.customer_id = current_customer.id
-
   end
 
   def create
@@ -36,7 +35,7 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      @order_item = OrderItem.new
+      @order_item = OrderDetail.new
       @order_item.item_id = cart_item.item_id
       @order_item.amount = cart_item.amount
       @order_item.price = (cart_item.item.price*1.1).floor
@@ -57,12 +56,11 @@ class Public::OrdersController < ApplicationController
   def show
   end
 
-
   private
 
 
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :address_option, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 
 end

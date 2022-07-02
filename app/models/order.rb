@@ -3,6 +3,8 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
+  attr_accessor :address_option
+
   enum payment_method: {
     credit_card: 0,
     transfer: 1
