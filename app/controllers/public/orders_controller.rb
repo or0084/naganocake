@@ -1,8 +1,11 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
+
 
   def confirm
     @order = Order.new(order_params)
@@ -24,10 +27,10 @@ class Public::OrdersController < ApplicationController
       render 'new'
     end
 
-
     @cart_items = current_customer.cart_items.all
     @order.customer_id = current_customer.id
   end
+
 
   def create
     @order = Order.new(order_params)
@@ -47,14 +50,19 @@ class Public::OrdersController < ApplicationController
     redirect_to public_orders_complete_path
   end
 
+
   def complete
   end
 
+
   def index
+    @orders = current_customer.orders.all.page(params[:page])
   end
+
 
   def show
   end
+
 
   private
 
