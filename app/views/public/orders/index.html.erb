@@ -18,9 +18,9 @@
     <tbody>
       <% @orders.each do |order| %>
       <td><%= order.created_at %></td>
-      <td><%= order.postal_code %> <%= order.address %><%= order.name %></td>
+      <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
       <td><% order.order_details.each do  |order_item| %>
-      <%= order_item.item.name%><% end %></td>
+      <%= order_item.item.name %><% end %></td>
       <td><%= order.total_payment.to_s(:delimited) %></td>
       <td><%= order.status %></td>
       <td><%= link_to "表示する", public_order_path(order.id), :class => "btn btn-primary" %></td>
@@ -28,9 +28,9 @@
       <% end %>
 </table>
   </div>
-</div
+</div>
 
-
+<ul class="pagination">
 <%= paginate @orders %>
-
+</ul>
 
