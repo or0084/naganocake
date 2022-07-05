@@ -14,6 +14,7 @@ class Item < ApplicationRecord
    (price * 1.1).floor
   end
 
+
   def get_image
    image.variant(resize_to_limit: [300, 180]).processed
   end

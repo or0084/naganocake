@@ -3,9 +3,11 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
+  attr_accessor :address_option
+
   enum payment_method: {
-    クレジット: 0,
-    銀行振込: 1
+    credit_card: 0,
+    transfer: 1
   }
 
   enum status: {
