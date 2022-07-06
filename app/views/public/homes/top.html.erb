@@ -1,2 +1,63 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="top-container">
+  <div class="row-12 w-100 text-center mt-5">
+    <h5 class="customer-top">ようこそ、ながのCAKEへ！<br>
+    このサイトは、ケーキ販売のECサイトになります。<br>
+    会員でない方も商品の閲覧はできますが、<br>
+    購入には会員登録が必要になります。</h5>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-2 mt-5 mb-3">
+      <h3>新着商品</h3>
+    </div>
+  </div>
+    <div class="row mb-5">
+      <div class="col-md-3">
+       <div class="image">
+        <%= link_to public_item_path(1) do %><%= image_tag 'メロンケーキ.png', :size => '200x200' %><% end %>
+        <div class="item-list">
+          <h4 class="item-name">メロンケーキ</h4>
+          <p class="item-price">¥8,900</p>
+        </div>
+       </div>
+     </div>
+
+
+      <div class="col-md-3">
+       <div class="image">
+        <%= link_to public_item_path(2) do %><%= image_tag 'ゴムゴムの実.png', :size => '200x200' %><% end %>
+        <div class="item-list">
+          <h4 class="item-name">ゴムゴムの実</h4>
+          <p class="item-price">¥13,000</p>
+        </div>
+       </div>
+     </div>
+
+
+      <div class="col-md-3">
+       <div class="image">
+        <%= link_to public_item_path(3) do %><%= image_tag 'チョコケーキ.jpeg', :size => '200x200' %><% end %>
+        <div class="item-list">
+          <h4 class="item-name">チョコケーキ</h4>
+          <p class="item-price">¥5,000</p>
+        </div>
+       </div>
+     </div>
+
+
+      <div class="col-md-3">
+       <div class="image">
+        <%= link_to public_item_path(4) do %><%= image_tag 'default-image.jpeg', :size => '200x200' %><% end %>
+        <div class="item-list">
+          <h4 class="item-name">テスト</h4>
+          <p class="item-price">¥100</p>
+        </div>
+       </div>
+     </div>
+     <div class="row-10 w-100 mb-4">
+       <%= link_to "全ての商品を見る>", public_items_path, class: "float-right" %>
+     </div>
+    </div>
+
+</div>
