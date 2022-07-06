@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -16,6 +15,10 @@ Rails.application.routes.draw do
     get 'homes/about'
     get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
+    delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    post '/orders/confirm' => 'orders#confirm', as: 'confirm'
+    # get '/orders/confirm' => 'orders#confirm', as: 'get_confirm'
+    get 'orders/complete'
   end
 
   namespace :public do
@@ -23,8 +26,9 @@ Rails.application.routes.draw do
        customers_show: "customers/my page"}
 
     resources :items, only:[:index, :show]
-    resources :cart_items, only:[:index, :update, :destroy, :destroy_all, :create]
+    resources :cart_items, only:[:index, :update, :destroy, :create]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+    resources :orders, only:[:new, :index, :show, :create]
   end
 
 
@@ -36,7 +40,8 @@ Rails.application.routes.draw do
     resources :genres, only:[:index, :create, :edit, :update]
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
     resources :customers, only:[:index, :show, :edit, :update]
-    resources :order_details, only:[:index, :show, :update]
+    resources :orders, only:[:index, :show, :update]
+    resources :order_details, only:[:update]
   end
 
 

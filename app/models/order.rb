@@ -3,16 +3,18 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
+  attr_accessor :address_option
+
   enum payment_method: {
-    クレジット: 0,
-    銀行振込: 1
+    credit_card: 0,
+    transfer: 1
   }
 
   enum status: {
-    入金待ち: 0,
-    入金確認: 1,
-    製作中: 2,
-    発送準備中: 3,
-    発送済み: 4
+    waiting_for_deposit: 0,
+    payment_confirmation: 1,
+    production: 2,
+    ready_to_ship: 3,
+    shipped: 4
   }
 end

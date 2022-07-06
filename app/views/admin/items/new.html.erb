@@ -22,7 +22,7 @@
   </div>
   <div class="form-group row">
     <label for="genre" class="col-lg-2">ジャンル</label>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), :class => "col-lg-4", :placeholder => "--選択してください--" %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), :class => "col-lg-4", include_blank: "--選択してください--" %>
   </div>
   <div class="form-group row">
     <label for="price" class="col-lg-2">税抜価格</label>
