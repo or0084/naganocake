@@ -7,7 +7,7 @@
         <%= link_to public_item_path(item.id) do %><%= image_tag item.get_image %><% end %>
         <div class="item-list">
           <h4 class="item-name"><%= item.name %></h4>
-          <p class="item-price">¥<%= item.price %></p>
+          <p class="item-price">¥<%= item.price.to_s(:delimited) %></p>
         </div>
        </div>
      </div>
