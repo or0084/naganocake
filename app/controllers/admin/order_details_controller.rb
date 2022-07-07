@@ -8,17 +8,17 @@ class Admin::OrderDetailsController < ApplicationController
     @order_details = @order.order_details
     if@order_detail.update(order_detail_params)
 
-     @order_details.making_statuses == "製作中"
+     if@order_detail.making_status == "production"
      @order.status = 2
      @order.save
 
-     if@order_details.making_statuses == 3
+     elsif@order_details.count == @order_details.where(making_status:"production_completed").count
      @order.status = 3
      @order.save
-   end
-    redirect_to admin_orders_path
+     end
+    end
+    redirect_to admin_order_path(@order)
   end
-end
 
 
 
