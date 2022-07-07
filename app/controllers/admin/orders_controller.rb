@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @orders = Order.page(params[:page])
   end
@@ -11,8 +13,16 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to admin_orders_path
+    @order_details = @order.order_details
+    if@order.update(order_params)
+      if@order.status == "payment_confirmation"
+        @order_details.each do |order_detail|
+         order_detail.making_status = 1
+         order_detail.save
+        end
+      end
+     end
+     redirect_to admin_order_path(@order)
   end
 
 
