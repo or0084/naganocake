@@ -9,7 +9,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-   public_homes_top_path
+   public_root_path
   end
 
   # GET /resource/sign_in
@@ -27,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-   protected
+ #   protected
 
 
  def customer_state

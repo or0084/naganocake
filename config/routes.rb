@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-    get 'homes/top'
+    root to: 'homes#top'
     get 'homes/about'
     get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
