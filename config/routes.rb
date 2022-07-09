@@ -13,21 +13,21 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-     resources :customers, only:[:show, :edit, :update]
 
+    get '/orders/complete' => 'orders#complete', as: 'complete'
+    resources :customers, only:[:show, :edit, :update]
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :update, :destroy, :create]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :index, :show, :create]
 
-    # root to: 'homes#top'
     get 'homes/about'
-    get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-    patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
+    get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch '/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
     post '/orders/confirm' => 'orders#confirm', as: 'confirm'
     # get '/orders/confirm' => 'orders#confirm', as: 'get_confirm'
-    get 'orders/complete'
+
   end
 
 
