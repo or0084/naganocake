@@ -21,7 +21,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
     reset_session
-    redirect_to public_homes_top_path
+    redirect_to root_path
   end
 
 
@@ -29,6 +29,6 @@ class Public::CustomersController < ApplicationController
 
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_active)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
   end
 end

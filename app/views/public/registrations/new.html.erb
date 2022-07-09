@@ -9,7 +9,7 @@
   </div>
   <br>
 
-  <%= form_with model: resource, url: customer_registration_path(resource) do |f| %>
+  <%= form_with model: @customer, url: customer_registration_path do |f| %>
 
   <div class="form-group row">
     <label for="text" class="col-lg-3">名前</label>

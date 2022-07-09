@@ -33,7 +33,7 @@
       </div>
       <div class="row mt-4 mb-4">
         <div class="col-lg-2">会員ステータス</div>
-        <div class="col-lg-4"><%= @customer.is_deleted %></div>
+        <div class="col-lg-4"><%= @customer.is_deleted ? '退会' : '有効' %></div>
       </div>
 
     <div class="row">

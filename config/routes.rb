@@ -9,9 +9,18 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+   root :to => "public/homes#top"
+
 
   namespace :public do
-    root to: 'homes#top'
+     resources :customers, only:[:show, :edit, :update]
+
+    resources :items, only:[:index, :show]
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+    resources :orders, only:[:new, :index, :show, :create]
+
+    # root to: 'homes#top'
     get 'homes/about'
     get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
@@ -21,20 +30,8 @@ Rails.application.routes.draw do
     get 'orders/complete'
   end
 
-  namespace :public do
-    resources :customers, only:[:show, :edit, :update, :unsubscribe, :withdraw], controllers: {
-       customers_show: "customers/my page"}
-
-    resources :items, only:[:index, :show]
-    resources :cart_items, only:[:index, :update, :destroy, :create]
-    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
-    resources :orders, only:[:new, :index, :show, :create]
-  end
 
 
-  namespace :admin do
-    get '/'  => 'homes#top'
-  end
 
   namespace :admin do
     resources :genres, only:[:index, :create, :edit, :update]
@@ -42,6 +39,8 @@ Rails.application.routes.draw do
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]
     resources :order_details, only:[:update]
+
+     get '/'  => 'homes#top'
   end
 
 
