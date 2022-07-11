@@ -12,7 +12,7 @@
 <div class="col-7"></div>
     <div class="row">
 
-      <%= form_with model: @cart_item, url: public_cart_items_path  do |f| %>
+      <%= form_with model: @cart_item, url: cart_items_path  do |f| %>
       <%= f.hidden_field :item_id, :value => @item.id %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <%= f.select :amount, *[1..10], include_blank: "個数選択" %>

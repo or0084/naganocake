@@ -12,7 +12,7 @@ Rails.application.routes.draw do
    root :to => "public/homes#top"
 
 
-  namespace :public do
+  scope module: :public do
 
     get '/orders/complete' => 'orders#complete', as: 'complete'
     resources :customers, only:[:show, :edit, :update]
@@ -22,9 +22,10 @@ Rails.application.routes.draw do
     resources :orders, only:[:new, :index, :show, :create]
 
     get 'homes/about'
+
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
-    delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
     post '/orders/confirm' => 'orders#confirm', as: 'confirm'
     # get '/orders/confirm' => 'orders#confirm', as: 'get_confirm'
 
