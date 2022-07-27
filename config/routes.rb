@@ -9,32 +9,32 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+   root :to => "public/homes#top"
 
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-    get '/public/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-    patch '/public/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
-    delete '/public/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-    post '/orders/confirm' => 'orders#confirm', as: 'confirm'
-    # get '/orders/confirm' => 'orders#confirm', as: 'get_confirm'
-    get 'orders/complete'
-  end
 
-  namespace :public do
-    resources :customers, only:[:show, :edit, :update, :unsubscribe, :withdraw], controllers: {
-       customers_show: "customers/my page"}
-
+  scope module: :public do
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    get '/orders/complete' => 'orders#complete', as: 'complete'
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :update, :destroy, :create]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :index, :show, :create]
+
+    get 'homes/about'
+    get 'customers/mypage' => 'customers#show', as: 'mypage'
+    get 'customers/mypage/edit' => 'customers#edit', as: 'edit'
+    patch 'customers/mypage' => 'customers#update', as: 'customer'
+
+    get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+
+    post '/orders/confirm' => 'orders#confirm', as: 'confirm'
+    # get '/orders/confirm' => 'orders#confirm', as: 'get_confirm'
+
   end
 
 
-  namespace :admin do
-    get 'homes/top'
-  end
+
 
   namespace :admin do
     resources :genres, only:[:index, :create, :edit, :update]
@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:index, :show, :update]
     resources :order_details, only:[:update]
+
+     get '/'  => 'homes#top'
   end
 
 

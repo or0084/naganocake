@@ -5,11 +5,11 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   def after_sign_in_path_for(resource)
-   public_homes_top_path
+   root_path
   end
 
   def after_sign_out_path_for(resource)
-   customer_session_path
+   root_path
   end
 
   # GET /resource/sign_in
@@ -27,15 +27,13 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-   protected
+ #   protected
 
 
  def customer_state
   @customer = Customer.find_by(email: params[:customer][:email])
   return if !@customer
-  if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
-   redirect_to public_customer_path(current_customer.id)
-  else
+  if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
    redirect_to new_customer_registration_path
   end
 

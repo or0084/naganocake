@@ -40,11 +40,11 @@
     <%= f.text_field :email, :class => "col-lg-3" %>
   </div>
   <div class="form-group row">
-    <label for="is_active" class="col-lg-3">会員ステータス</label>
-    <%= f.radio_button :is_active, "有効" %>
-    <%= f.label :is_active, "有効", :class => "col-lg-2"  %>
-    <%= f.radio_button :is_active, "退会" %>
-    <%= f.label :is_active, "退会", :class => "col-og-2" %>
+    <label for="is_deleted" class="col-lg-3">会員ステータス</label>
+    <%= f.radio_button :is_deleted, "false" %>
+    <%= f.label :is_deleted, "有効", :class => "col-lg-2"  %>
+    <%= f.radio_button :is_deleted, "true" %>
+    <%= f.label :is_deleted, "退会", :class => "col-og-2" %>
   </div>
   <div class="form-group row">
     <div class="col-lg-3"></div>

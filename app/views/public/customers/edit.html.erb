@@ -7,7 +7,7 @@
     <h3 class="bg-light col-lg-4 mb-5  mt-4">会員情報編集</h3>
   </div>
 
-  <%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
+  <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
 
   <div class="form-group row">
     <label for="text" class="col-lg-3">氏名</label>
@@ -38,7 +38,7 @@
   <div class="form-group row">
     <div class="col-lg-3"></div>
     <%= f.submit "編集内容を保存", :class => "btn btn-success col-lg-2 mb-5 mt-3 mr-5" %>
-    <%= link_to "退会する", public_unsubscribe_path, :class => "btn btn-danger col-lg-2 mb-5 mt-3" %>
+    <%= link_to "退会する", unsubscribe_path, :class => "btn btn-danger col-lg-2 mb-5 mt-3" %>
   </div>
   <% end %>
   </div>
